@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ML Web App</title>
+</head>
+<head>
+    <style>
+    h1 {text-align: center;}
+    p {text-align: center;}
+    div {text-align: center;}
+    </style>
+    </head>
+    <head>
+        <style>
+        .button {
+          background-color: #f3faf3;
+          border: none;
+          color: rgb(214, 71, 190);
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+        
+        </style>
+        
+        
+        </head>  
+<body>
+    
+<div style="background-color:rgb(194, 112, 201);color:rgb(50, 50, 50);padding:0px;">
+    <h4 style="font-size:80px;">Iris Species Predictor</p>
+    <h1>ML WEB APP</h1>
+    <h2>Supervised Mechine Learning</h2>    
+    <a href="{{url_for('index')}}" class="button">RESET</a>
+    <a href="{{url_for('preview')}}" input type="button" class="button">VIEW DATASET</a>
+</div>        
+                
+<section class="section section-signup" >
+    
+    <div class="box">
+        <div class="row">
+        <div class="col s12 m4">
+          
+            <form action="{{ url_for('analyze')}}" method="POST">
+              <div class="input-field">
+               <p class="range-field">
+                    <input type="range" id="sepal_lengthInput" name="sepal_length" min="4" max="8" value="0" step="0.1" >
+                    
+                <label for="Sepal Length">Sepal Length</label>
+                
+              </div>
+               <div class="input-field">
+               <p class="range-field">
+                    <input type="range" id="sepal_widthInput" name="sepal_width" min="2" max="5" value="0" step="0.1"> 
+                <label for="">Sepal Width</label>
+              </div>
+               <div class="input-field">
+               <p class="range-field">
+                    <input type="range" id="petal_lengthInput" name="petal_length" min="0" max="7" value="0"
+               step="0.1" >
+                <label for="">Petal Length</label>
+              </div>
+              <div class="input-field">
+               <p class="range-field">
+                    <input type="range" id="petal_widthInput" name="petal_width" min="0" max="3" value="0"
+              step="0.1">
+                <label for="">Petal Width</label>
+              </div>
+              
+              <div class="input-field">
+                <select id="role" name="model_choice">
+                  <option value="" disabled selected>Select Model</option>
+                  <option value="logitmodel">Logistic Regression</option>
+                    <option value="knnmodel">K-Nearest Neighbour</option>
+                    <option value="svmmodel">SVM</option>
+                </select>
+                <label for="role">Select ML Algorithm</label>
+              </div>
+              <input type="submit" value="Predict" class="button">
+              <input type="reset" value="Clear" class="button">
+            </form>
+          </div>
+        </div>
+         <div class="col s12 m4 offers" >
+                        
+        <h4>Sepal Length: {{ sepal_length }}</h4>
+        <h4>Sepal Width: {{ sepal_width }}</h4>
+        <h4>Petal Length: {{ petal_length}} </h4>
+        <h4>Petal Width: {{ petal_width}}</h4>
+     Using {{ model_selected }} on {{ clean_data }}
+                     
+     
+         <div class="col s12 m4 offers">
+            <h1>Prediction</h1>
+              <div class="collection" role="alert">
+                <p  class="collection-item active purple">Predicted result {{ result_prediction }} </p>
+            </div>       				
+            <div class="image">
+                
+                    {% if result_prediction == ['versicolor']%}
+                      <img src="{{url_for('static', filename='versicolor.jpg',width= 200, height=200 )}}" />
+
+                    {% elif result_prediction == ['setosa']  %}
+                      <img src="{{url_for('static', filename='setosa.jpg',width= 200, height=200 )}}" />
+                    
+                    {% elif result_prediction == ['virginica']  %}
+                       <img src="{{url_for('static', filename='virginica.jpg',width= 200, height=200 )}}" />
+
+                    {% else %}
+                        <p></p>
+                    
+            
+                   {% endif%}
+            </div>
+          
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+
+  
+              
+          
+    
+
+
+</body>
+
+</html>
+
+
+
+
+
+
